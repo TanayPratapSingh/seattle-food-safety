@@ -1,13 +1,12 @@
 # Seattle food safety: the strongest predictor was a label the file contradicts
 
-My take home assessment for the Stanford RegLab predoctoral Research Fellow
-application, submitted on 30 September 2026. The task: predict which Seattle
-restaurant inspections find a serious food safety violation, using only what is
-known before the inspection, add flags for Asian and ethnic cuisines, and say
+Which Seattle restaurant inspections will find a serious food safety
+violation, judged only from what is known before the inspection? I built
+models to answer that, added flags for Asian and ethnic cuisines, and asked
 whether a health department should use the result.
 
-[`seattle_food_safety.ipynb`](seattle_food_safety.ipynb) is the
-notebook I submitted, unchanged, with every output from its one run saved.
+[`seattle_food_safety.ipynb`](seattle_food_safety.ipynb) holds the whole
+analysis, run once on 30 September 2026, with every output saved.
 Every number below was printed by a cell of that notebook.
 [RESULTS.md](RESULTS.md) maps each one to its cell, and
 `scripts/check_results.py` checks that mapping in CI.
