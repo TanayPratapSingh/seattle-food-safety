@@ -115,3 +115,24 @@ Random targeting finds a serious violation in 40.5% of Neither inspections.
 - **The text model is a cuisine detector.** The words pushing it toward serious
   are rice, sushi, mexican, pho, chinese, teriyaki and thai. The words pushing
   it away are pizza, subway, burger, sandwich and pie.
+
+## Finding 3: the model would send every priority visit to two groups
+
+Isotonic calibration fitted on 2011 makes the predicted risks usable as
+probabilities without changing the ranking. Within Neither the Brier score goes
+from 0.228 to 0.224, against 0.241 for the 2011 base rate. The targeting
+problem is unchanged.
+
+![Share of a 20% inspection budget each group receives. Ranked overall, Asian restaurants get 70% of the 733 visits and Other ethnic 30%, finding 730 serious violations, and Neither restaurants get none. Taking the riskiest 20% within each group gives Asian 32%, Other ethnic 14% and Neither 54%, finding 580](figures/who_gets_visits.png)
+
+With a budget of 20% of test inspections, following the model sends all 733
+visits to Asian and Other ethnic restaurants and none to Neither restaurants,
+although 40.5% of Neither inspections are serious. Dropping the cuisine flags
+does not help: the model still fills 99.7% of its riskiest 20% with those
+restaurants, because their history columns are inflated too. Taking the riskiest
+20% within each group finds 580 serious violations instead of 730. That loss
+only counts if the flagged labels are real, and Finding 1 says they are not.
+
+Predicting the score itself with a Poisson boosting model misses by 12.7 points
+on average, against 15.9 for "same as last time", but it ranks inspections
+almost exactly as the classifier does.
