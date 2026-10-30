@@ -91,3 +91,15 @@ rerun. Values are as printed, usually rounded to three places.
 | The same share with the cuisine flags removed | `all but cuisine flags 0.997` | In [20] |
 | Words pushing the text model toward serious | `toward serious: rice, sushi, mexican, pho, chinese, teriyaki, thai` | In [21] |
 | Words pushing it away | `toward not serious: pizza, subway, burger, sandwich, pie` | In [21] |
+
+## Targeting
+
+| Quantity | Printed | Cell |
+|---|---|---|
+| Riskiest 20% overall: visits and serious violations found | `riskiest 20% overall: 733 visits, 730 serious found` | In [22] |
+| Asian share of those visits | `Asian: 0.701 of visits` | In [22] |
+| Neither share of those visits | `Neither: 0.000 of visits` | In [22] |
+| Riskiest 20% within each group: visits and serious violations found | `riskiest 20% within each group: 733 visits, 580 serious found` | In [22] |
+| Neither share of visits under the per group rule | `Neither: 0.542 of visits` | In [22] |
+| Score regression, mean absolute error | `mean abs error: model 12.7` | In [23] |
+| Mean absolute error of predicting the last score again | `same as last time 15.9` | In [23] |
