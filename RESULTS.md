@@ -26,6 +26,8 @@ rerun. Values are as printed, usually rounded to three places.
 | Share of score variance explained by restaurant | `share of variance explained by restaurant: 0.751` | In [5] |
 | Serious share after a previous score of 0 | `(-1, 0] 0.308` | In [6] |
 | Serious share after a previous score of 50 or more | `(49, 200] 0.974` | In [6] |
+| Highest yearly serious share (a full year) | `2007 0.695` | In [6] |
+| Lowest yearly serious share (a full year) | `2011 0.653` | In [6] |
 | Zip codes with 100 or more inspections | `23 zips with 100+ inspections` | In [6] |
 | Lowest serious share among those zips | `98126 0.461` | In [6] |
 | Highest serious share among those zips | `98144 0.859` | In [6] |
