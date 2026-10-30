@@ -82,3 +82,36 @@ as if their scores had been replaced with random numbers centered near 60. The
 file cannot say where that happened: in the original records, in processing, or
 in preparing the exercise. Comparing a sample of rows with King County's public
 inspection records would settle it.
+
+## Finding 2: on the sound records, history is nearly everything
+
+I train on 2006 to 2010, choose settings and calibrate on 2011, and test once on
+2012 to February 2013 (3,666 inspections), which is how a department would use
+it. The intervals are 95% intervals from 500 bootstrap resamples of whole
+restaurants, since a restaurant's inspections are related.
+
+![Test AUC with 95% intervals for five rankings, over all inspections and within Neither restaurants. Overall: previous score 0.870, cuisine flag only 0.836, logistic regression 0.885, gradient boosting 0.886, review text 0.845. Within Neither: 0.639, 0.500, 0.651, 0.657 and 0.576](figures/auc_by_subset.png)
+
+| Ranking | Test AUC, all | Test AUC, Neither [95% interval] | Precision in riskiest 20%, Neither |
+|---|---|---|---|
+| Previous score | 0.870 | 0.639 [0.613, 0.662] | 0.594 |
+| Cuisine flag only | 0.836 | 0.500 | 0.418 |
+| Logistic regression | 0.885 | 0.651 [0.626, 0.677] | 0.594 |
+| Gradient boosting | 0.886 | 0.657 [0.631, 0.684] | 0.617 |
+| Review text (TF-IDF, logistic) | 0.845 | 0.576 [0.549, 0.603] | 0.489 |
+
+Random targeting finds a serious violation in 40.5% of Neither inspections.
+
+- **Most of the headline AUC is the flag.** Over all inspections the cuisine
+  flag alone gets 0.836. Boosting adds 0.016 to ranking by the last score.
+  Boosting even gives every Asian and Other ethnic test inspection the same
+  probability (0.953), so their order among themselves is a random tie break.
+- **Within Neither the gain is modest.** Boosting beats the last score by 0.018,
+  and the intervals overlap. Logistic regression and boosting are tied.
+- **History alone does as well as everything.** Refit on one input group at a
+  time, boosting on history alone gets 0.894 overall and 0.685 within Neither.
+  Yelp alone gets 0.515, a coin flip. Dropping the cuisine flags changes
+  nothing (0.889 and 0.671).
+- **The text model is a cuisine detector.** The words pushing it toward serious
+  are rice, sushi, mexican, pho, chinese, teriyaki and thai. The words pushing
+  it away are pizza, subway, burger, sandwich and pie.
