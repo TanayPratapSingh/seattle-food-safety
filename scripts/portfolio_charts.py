@@ -22,6 +22,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 BG, BLUE, BEIGE, GRAY, INK = "#FCFBF9", "#2F78D4", "#DCD8D0", "#6B6B70", "#1C1C1E"
 NOTEBOOK = Path(__file__).resolve().parent.parent / "tanay_singh_reglab_takehome.ipynb"
 GROUPS = ("Neither", "Asian", "Other ethnic")
+RANKINGS = ("Previous score", "Cuisine flag only", "Logistic regression", "Gradient boosting", "Review text")
 
 
 def output(cells: list, index: int, marker: str) -> str:
@@ -41,6 +42,18 @@ def label_matches(cells: list) -> dict:
              for m in re.finditer(r"^(Asian|Neither|Other ethnic)\s+([\d.]+)\s+(\d+)$", text, re.M)}
     assert set(found) == set(GROUPS), found
     return found
+
+
+def aucs(cells: list) -> dict:
+    """Test AUC and its 95% interval for each ranking, overall and within Neither (cell 31)."""
+    text = output(cells, 31, "auc_interval")
+    names = "|".join(RANKINGS)
+    rows = re.findall(rf"({names})\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s*\\?$", text, re.M)
+    assert len(rows) == 2 * len(RANKINGS), rows
+    out = {}
+    for i, (name, auc, low, high) in enumerate(rows):
+        out["All inspections" if i < len(RANKINGS) else "Neither only", name] = tuple(map(float, (auc, low, high)))
+    return out
 
 
 def style(ax) -> None:
@@ -78,9 +91,33 @@ def draw_matches(m: dict, out: Path) -> None:
     save(fig, out)
 
 
+def draw_aucs(a: dict, out: Path) -> None:
+    fig, ax = plt.subplots(figsize=(16, 6.2), dpi=100)
+    fig.patch.set_facecolor(BG)
+    style(ax)
+    ax.grid(axis="x", color=BEIGE, linewidth=0.8)
+    for subset, color, dy in (("All inspections", GRAY, 0.16), ("Neither only", BLUE, -0.16)):
+        for i, name in enumerate(reversed(RANKINGS)):
+            auc, low, high = a[subset, name]
+            ax.plot([low, high], [i + dy] * 2, color=color, linewidth=3, solid_capstyle="round")
+            ax.plot(auc, i + dy, "o", color=color, markersize=10, label=subset if i == 0 else None)
+            ax.text(high + 0.008, i + dy, f"{auc:.3f}", va="center", fontsize=12.5, color=color)
+    ax.axvline(0.5, color=GRAY, linewidth=1, linestyle=":")
+    ax.set_yticks(range(len(RANKINGS)), list(reversed(RANKINGS)), fontsize=15, color=INK)
+    ax.set_xlim(0.45, 0.95)
+    ax.set_xlabel("test AUC, 2012 to February 2013 (0.5 is a coin flip); lines are 95% intervals from resampling whole restaurants",
+                  fontsize=13, color=GRAY)
+    ax.legend(frameon=False, fontsize=13, loc="center", bbox_to_anchor=(0.6, 0.62), labelcolor=INK)
+    ax.set_title("Over all inspections the cuisine flag alone reaches most of the headline AUC.\n"
+                 "Within Neither restaurants, where the records look sound, boosting edges the last score.",
+                 loc="left", fontsize=16, color=INK, pad=14)
+    save(fig, out)
+
+
 if __name__ == "__main__":
     dest = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent / "figures")
     dest.mkdir(parents=True, exist_ok=True)
     cells = json.loads(NOTEBOOK.read_text())["cells"]
     draw_matches(label_matches(cells), dest / "labels_disagree.png")
+    draw_aucs(aucs(cells), dest / "auc_by_subset.png")
     print(f"wrote the charts to {dest}")
