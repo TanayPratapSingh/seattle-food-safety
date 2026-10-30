@@ -33,7 +33,7 @@ def outputs(notebook: Path) -> dict[int, str]:
 
 
 def main() -> int:
-    printed = outputs(ROOT / "tanay_singh_reglab_takehome.ipynb")
+    printed = outputs(ROOT / "seattle_food_safety.ipynb")
     rows = [ROW.match(line) for line in (ROOT / "RESULTS.md").read_text().splitlines()]
     rows = [r for r in rows if r]
     missing = [(r[1], int(r[2])) for r in rows if squash(r[1]) not in printed.get(int(r[2]), "")]

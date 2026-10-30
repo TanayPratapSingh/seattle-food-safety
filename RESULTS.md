@@ -1,7 +1,7 @@
 # Results, traced to the notebook
 
 Every number in the README comes from one run of
-[`tanay_singh_reglab_takehome.ipynb`](tanay_singh_reglab_takehome.ipynb) on
+[`seattle_food_safety.ipynb`](seattle_food_safety.ipynb) on
 30 September 2026, before submission. Each row below gives the text that cell
 printed and the cell's execution count, so it can be found by searching the
 notebook for `In [n]`. `python scripts/check_results.py` confirms that every

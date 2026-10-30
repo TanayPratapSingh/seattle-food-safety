@@ -6,7 +6,7 @@ restaurant inspections find a serious food safety violation, using only what is
 known before the inspection, add flags for Asian and ethnic cuisines, and say
 whether a health department should use the result.
 
-[`tanay_singh_reglab_takehome.ipynb`](tanay_singh_reglab_takehome.ipynb) is the
+[`seattle_food_safety.ipynb`](seattle_food_safety.ipynb) is the
 notebook I submitted, unchanged, with every output from its one run saved.
 Every number below was printed by a cell of that notebook.
 [RESULTS.md](RESULTS.md) maps each one to its cell, and
@@ -181,8 +181,8 @@ python scripts/portfolio_charts.py   # redraws the three figures from those outp
 
 | Path | What it is |
 |---|---|
-| `tanay_singh_reglab_takehome.ipynb` | The submitted analysis, already run |
-| `tanay_singh_reglab_takehome.html` | The same notebook as a web page, as submitted |
+| `seattle_food_safety.ipynb` | The submitted analysis, already run |
+| `seattle_food_safety.html` | The same notebook as a web page, as submitted |
 | `requirements.txt` | The pinned packages it ran with |
 | `RESULTS.md` | Every quoted number, with the cell that printed it |
 | `scripts/check_results.py` | Checks RESULTS.md against the notebook (standard library only) |

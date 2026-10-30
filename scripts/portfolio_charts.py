@@ -20,7 +20,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 BG, BLUE, BEIGE, GRAY, INK = "#FCFBF9", "#2F78D4", "#DCD8D0", "#6B6B70", "#1C1C1E"
-NOTEBOOK = Path(__file__).resolve().parent.parent / "tanay_singh_reglab_takehome.ipynb"
+NOTEBOOK = Path(__file__).resolve().parent.parent / "seattle_food_safety.ipynb"
 GROUPS = ("Neither", "Asian", "Other ethnic")
 RANKINGS = ("Previous score", "Cuisine flag only", "Logistic regression", "Gradient boosting", "Review text")
 
