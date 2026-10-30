@@ -136,3 +136,27 @@ only counts if the flagged labels are real, and Finding 1 says they are not.
 Predicting the score itself with a Poisson boosting model misses by 12.7 points
 on average, against 15.9 for "same as last time", but it ranks inspections
 almost exactly as the classifier does.
+
+## What I would tell a health department
+
+A model like this could reasonably move some routine visits from reliably clean
+places to places with bad recent histories. Trained on these labels, it would
+send every priority inspection to Asian and ethnic restaurants and none to the
+rest. If labels like these come from inspector bias, the model hands that bias
+back to inspectors and makes it look objective, and it feeds itself, since more
+inspections mean more recorded violations. Targeting by cuisine comes close to
+targeting by national origin. Before using it I would want a random share of
+inspections, regular checks by group and by inspector, and caps on how far any
+group's inspection rate can move until someone verifies the gap.
+
+## Limitations
+
+- Everything depends on the Asian and Other ethnic labels, so checking this file
+  against the source records comes first.
+- The test is offline. It assumes the inspections a department skips would have
+  turned out the same, and it covers one period. Rolling the split forward a
+  year at a time would show how stable this is.
+- Both approaches predict where violations will be found, not where an
+  inspection would reduce them. That needs random audits or an experiment.
+- Training stops at 2010 so that 2011 could be used for tuning and calibration.
+  In practice I would refit on everything.
