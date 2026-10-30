@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Standard library only. The data is not in the repo, so this checks the
+      # saved outputs: every number in RESULTS.md is in the cell it cites.
+      - name: results trace to the notebook
+        run: python scripts/check_results.py
+
+      - name: figures redraw from the saved outputs
+        run: |
+          pip install "matplotlib==3.11.2"
+          python scripts/portfolio_charts.py "$RUNNER_TEMP/figures"
+
+      - name: no em dashes
+        run: "! grep -rn $'\\u2014' --exclude-dir=.git ."
