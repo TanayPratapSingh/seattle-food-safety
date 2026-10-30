@@ -78,8 +78,7 @@ like the same kind of record.
 Biased inspectors could make a group's scores higher and noisier, but they could
 not make the file's own columns disagree with each other. The flagged rows look
 as if their scores had been replaced with random numbers centered near 60. The
-file cannot say where that happened: in the original records, in processing, or
-in preparing the exercise. Comparing a sample of rows with King County's public
+file cannot say where that happened: in the original records or in processing. Comparing a sample of rows with King County's public
 inspection records would settle it.
 
 ## Finding 2: on the sound records, history is nearly everything
