@@ -160,3 +160,30 @@ group's inspection rate can move until someone verifies the gap.
   inspection would reduce them. That needs random audits or an experiment.
 - Training stops at 2010 so that 2011 could be used for tuning and calibration.
   In practice I would refit on everything.
+
+## Running it
+
+The data is not in this repository. `food_violations_seattle.csv` and
+`cuisines.csv` were provided by RegLab for the exercise, so I have not
+redistributed them. With Python 3.12, run `pip install -r requirements.txt`
+(plus `pip install notebook` if you need Jupyter), put both files in a `data/`
+folder next to the notebook, and run all cells. It takes under a minute.
+
+Without the data, the two scripts still work, because they read the outputs
+saved in the notebook rather than the CSVs:
+
+```bash
+python scripts/check_results.py      # every number in RESULTS.md is in the cell it cites
+python scripts/portfolio_charts.py   # redraws the three figures from those outputs
+```
+
+## What is here
+
+| Path | What it is |
+|---|---|
+| `tanay_singh_reglab_takehome.ipynb` | The submitted analysis, already run |
+| `tanay_singh_reglab_takehome.html` | The same notebook as a web page, as submitted |
+| `requirements.txt` | The pinned packages it ran with |
+| `RESULTS.md` | Every quoted number, with the cell that printed it |
+| `scripts/check_results.py` | Checks RESULTS.md against the notebook (standard library only) |
+| `scripts/portfolio_charts.py` | Draws `figures/` from the notebook's saved outputs |
