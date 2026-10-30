@@ -1,0 +1,9 @@
+# The exercise data was provided by RegLab and is not redistributed
+data/
+
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.ruff_cache/
+.claude/
+.DS_Store
