@@ -2,7 +2,7 @@
 
 Every number in the README comes from one run of
 [`seattle_food_safety.ipynb`](seattle_food_safety.ipynb) on
-30 September 2026, before submission. Each row below gives the text that cell
+30 September 2026. Each row below gives the text that cell
 printed and the cell's execution count, so it can be found by searching the
 notebook for `In [n]`. `python scripts/check_results.py` confirms that every
 snippet is in the output of the cell it cites, and CI runs it on every push.
