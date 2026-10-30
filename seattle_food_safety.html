@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>tanay_singh_reglab_takehome</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>seattle_food_safety</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -8164,7 +8164,7 @@ share serious (10+): 0.674
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="1.2-Scores-spread-across-restaurants,-and-whether-they-stick-or-not">1.2 Scores spread across restaurants, and whether they stick or not<a class="anchor-link" href="#1.2-Scores-spread-across-restaurants,-and-whether-they-stick-or-not">¶</a></h3><p>The prompt asks about the spread among restaurants, so I also look at each restaurant's average score and how often it was serious. If a restaurant's past predicts its next inspection, history alone can guide targeting. This also shapes how to test the model. Since a restaurant's rows are related, splitting them at random would let a model learn from a restaurant's later inspections and then be graded on its earlier ones.</p>
+<h3 id="1.2-Scores-spread-across-restaurants,-and-whether-they-stick-or-not">1.2 Scores spread across restaurants, and whether they stick or not<a class="anchor-link" href="#1.2-Scores-spread-across-restaurants,-and-whether-they-stick-or-not">¶</a></h3><p>Beyond single inspections, I look at the spread among restaurants: each restaurant's average score and how often it was serious. If a restaurant's past predicts its next inspection, history alone can guide targeting. This also shapes how to test the model. Since a restaurant's rows are related, splitting them at random would let a model learn from a restaurant's later inspections and then be graded on its earlier ones.</p>
 </div>
 </div>
 </div>
@@ -8882,7 +8882,7 @@ Other ethnic  0.013  1346
 <li><strong>Only the Neither scores bunch.</strong> Neither scores are multiples of 5 far more often than chance in every range. Above 20, where nearly all of their scores fall, Asian and Other ethnic scores are multiples of 5 only 19% to 26% of the time.</li>
 <li><strong>Only the Neither scores persist.</strong> For Neither restaurants, a score tracks the same restaurant's earlier score (correlation 0.25), and the "previous score" column tracks the file's earlier score closely (0.92). For Asian and Other ethnic restaurants every correlation is essentially zero (between -0.07 and 0.00): a restaurant's score says nothing about its next one. This also rules out a leak: the "previous score" column never tracks the current score more than the real earlier score does.</li>
 </ul>
-<p>I think real differences between kitchens would not produce this, and neither would biased inspectors on their own. Bias could make a group's scores higher and noisier, but it would not make the file's own columns disagree with each other. The two groups look instead as if their scores had been replaced with random numbers centered near 60. I can't tell from the file where that happened: in the original records, in processing, or in preparing this exercise. A direct check would be to compare a sample of rows with the source data or with King County's public inspection records.</p>
+<p>I think real differences between kitchens would not produce this, and neither would biased inspectors on their own. Bias could make a group's scores higher and noisier, but it would not make the file's own columns disagree with each other. The two groups look instead as if their scores had been replaced with random numbers centered near 60. I can't tell from the file where that happened: in the original records or in processing. A direct check would be to compare a sample of rows with the source data or with King County's public inspection records.</p>
 </div>
 </div>
 </div>
@@ -9625,7 +9625,7 @@ base rate, Neither: 0.241
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="What-the-model-relies-on">What the model relies on<a class="anchor-link" href="#What-the-model-relies-on">¶</a></h3><p>The prompt says some variables are much more predictive than others, so I refit boosting on one group of inputs at a time, and again with one group left out. The last column is the fairness question: how much of the top 20% is Asian or Other ethnic?</p>
+<h3 id="What-the-model-relies-on">What the model relies on<a class="anchor-link" href="#What-the-model-relies-on">¶</a></h3><p>Some inputs could matter far more than others, so I refit boosting on one group of inputs at a time, and again with one group left out. The last column is the fairness question: how much of the top 20% is Asian or Other ethnic?</p>
 </div>
 </div>
 </div>
