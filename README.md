@@ -47,3 +47,38 @@ and the restaurant's Yelp cuisine labels. An inspection is serious if it scores
   non positive reviews and rating are all between -0.040 and 0. This matches
   Altenburger and Ho (2019), who found that Yelp adds little to the Seattle
   data behind Kang et al. (2013) once inspection history is known.
+
+## Finding 1: the flagged rows do not behave like inspection records
+
+A restaurant is Asian if any of its cuisine labels is Asian in the lookup, and
+ethnic likewise. Every Asian cuisine is also coded ethnic, so I use three
+groups: Asian (499 restaurants), Other ethnic (234) and Neither (1,022). These
+are cuisine categories, not the owners' ethnicity.
+
+Asian and Other ethnic restaurants average about 60 points, and 99.5% and 99.4%
+of their inspections are serious. Neither restaurants average 10 points, and
+42.2% are serious. That gap is bigger than real differences between kitchens
+should produce, so before modeling I checked whether the two sets of rows behave
+like the same kind of record.
+
+![How often the previous score column equals the score the same file records for that earlier inspection: 95.1% of 5,709 back to back pairs for Neither restaurants, 1.3% of 3,137 for Asian and 1.3% of 1,346 for Other ethnic restaurants](figures/labels_disagree.png)
+
+- **The file disagrees with itself for two groups only.** When an inspection
+  period starts on the day the previous one ended, the "previous score" column
+  should equal the score the file records for that earlier inspection. It does
+  in 95.1% of Neither pairs and 1.3% of Asian and Other ethnic pairs, and the
+  gap holds at every score level.
+- **Only the Neither scores bunch.** Neither scores land on multiples of 5 far
+  more often than chance. Above 20, Asian and Other ethnic scores land on them
+  only 19% to 26% of the time.
+- **Only the Neither scores persist.** For Neither restaurants a score tracks
+  the same restaurant's earlier score (correlation 0.245), and the "previous
+  score" column tracks that earlier score closely (0.921). For the other two
+  groups every one of these correlations is between -0.066 and 0.002.
+
+Biased inspectors could make a group's scores higher and noisier, but they could
+not make the file's own columns disagree with each other. The flagged rows look
+as if their scores had been replaced with random numbers centered near 60. The
+file cannot say where that happened: in the original records, in processing, or
+in preparing the exercise. Comparing a sample of rows with King County's public
+inspection records would settle it.
