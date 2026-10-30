@@ -187,3 +187,12 @@ python scripts/portfolio_charts.py   # redraws the three figures from those outp
 | `RESULTS.md` | Every quoted number, with the cell that printed it |
 | `scripts/check_results.py` | Checks RESULTS.md against the notebook (standard library only) |
 | `scripts/portfolio_charts.py` | Draws `figures/` from the notebook's saved outputs |
+
+## References
+
+- Kang, Kuznetsova, Luca and Choi (2013). *Where Not to Eat? Improving Public
+  Policy by Predicting Hygiene Inspections Using Online Reviews.* EMNLP.
+- Altenburger and Ho (2019). *When Algorithms Import Private Bias into Public
+  Enforcement.* Journal of Institutional and Theoretical Economics 175(1).
+- Altenburger and Ho (2019). *Is Yelp Actually Cleaning Up the Restaurant
+  Industry?* WWW '19.
