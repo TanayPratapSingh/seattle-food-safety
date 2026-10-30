@@ -161,10 +161,9 @@ group's inspection rate can move until someone verifies the gap.
 
 ## Running it
 
-The data is not in this repository. `food_violations_seattle.csv` and
-`cuisines.csv` were provided by RegLab for the exercise, so I have not
-redistributed them. With Python 3.12, run `pip install -r requirements.txt`
-(plus `pip install notebook` if you need Jupyter), put both files in a `data/`
+The data is not in this repository. With Python 3.12, run
+`pip install -r requirements.txt` (plus `pip install notebook` if you need
+Jupyter), put `food_violations_seattle.csv` and `cuisines.csv` in a `data/`
 folder next to the notebook, and run all cells. It takes under a minute.
 
 Without the data, the two scripts still work, because they read the outputs
@@ -179,8 +178,8 @@ python scripts/portfolio_charts.py   # redraws the three figures from those outp
 
 | Path | What it is |
 |---|---|
-| `seattle_food_safety.ipynb` | The submitted analysis, already run |
-| `seattle_food_safety.html` | The same notebook as a web page, as submitted |
+| `seattle_food_safety.ipynb` | The analysis, already run |
+| `seattle_food_safety.html` | The same notebook as a web page |
 | `requirements.txt` | The pinned packages it ran with |
 | `RESULTS.md` | Every quoted number, with the cell that printed it |
 | `scripts/check_results.py` | Checks RESULTS.md against the notebook (standard library only) |
